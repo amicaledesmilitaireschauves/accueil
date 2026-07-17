@@ -422,6 +422,10 @@ ul {
     
 }
 
+.presentation h3 {
+    text-align: center;
+}
+
 .pdf-content {
     text-align: center, justify;
     max-width: 800px;

@@ -111,6 +111,20 @@ ul {
     vertical-align: middle;
 }
 
+/* ===== LOGO ===== */
+.logo-amc {
+    height: 40px !important; /* Taille fixe */
+    width: auto !important; /* Garde les proportions */
+    max-width: 100% !important; /* Empêche le débordement */
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Pour le logo dans la barre de navigation */
+.nav-brand .logo-amc {
+    height: 45px !important; 
+}
+
 /* Effet au survol */
 .nav-brand:hover .logo-amc {
     transform: scale(1.05);

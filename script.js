@@ -4,12 +4,12 @@
  */
 
 // ============================================
-// CONFIGURATION
+// CONFIGURATION - Modifier ici le mot de passe
 // ============================================
 const MEMBER_PASSWORD = "AMC2026";
 
 // ============================================
-// Liste des pages protégées 
+// Liste des pages protégées (à modifier si besoin)
 // ============================================
 const PROTECTED_PAGES = [
     'actualites.html',

@@ -1097,6 +1097,28 @@ ul {
     .login-container {
         padding: 40px 30px;
     }
+
+        .test-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .test-title h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .result h2 {
+        font-size: 1.6rem;
+    }
 }
 
 /* --- Animations --- */
@@ -1273,30 +1295,7 @@ button:disabled {
     box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .test-container {
-        padding: 2rem 1.5rem;
-    }
 
-    .test-title h1 {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    .navigation {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    button {
-        width: 100%;
-    }
-
-    .result h2 {
-        font-size: 1.6rem;
-    }
-}
 
 .test-title h1 {
         font-size: 2rem;

@@ -89,7 +89,7 @@ ul {
     margin-bottom: 50px;
 }
 
-.logo-icon {
+/*.logo-icon {
     width: 90px;
     height: 90px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -101,6 +101,20 @@ ul {
     font-size: 36px;
     color: var(--dark);
     box-shadow: 0 4px 20px rgba(201, 162, 39, 0.3);
+}
+*/
+
+/* Logo dans la barre de navigation */
+.logo-amc {
+    height: 100px; 
+    margin-right: 10px; /* Espace entre l'icône et le texte */
+    vertical-align: middle;
+}
+
+/* Effet au survol */
+.nav-brand:hover .logo-amc {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .logo-title {

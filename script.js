@@ -1,12 +1,23 @@
 /**
  * AMC - Amicale des Militaires Chauves
- * Script de gestion de l'authentification
+ * Script de gestion de l'authentification et protection des pages
  */
 
 // ============================================
-// CONFIGURATION - Modifier ici le mot de passe
+// CONFIGURATION
 // ============================================
-const MEMBER_PASSWORD = "AMC2026"; 
+const MEMBER_PASSWORD = "AMC2026";
+
+// ============================================
+// Liste des pages protégées 
+// ============================================
+const PROTECTED_PAGES = [
+    'actualites.html',
+    'goodies.html',
+    'photos.html',
+    'evenements.html',
+    'test-calvitie.html'
+];
 
 // ============================================
 // Vérification du mot de passe
@@ -15,30 +26,30 @@ function checkPassword() {
     const inputPassword = document.getElementById('password').value;
     const errorMsg = document.getElementById('error-msg');
     const loginBtn = document.querySelector('.login-btn');
-    
+
     // Animation de chargement
     loginBtn.innerHTML = '<span>Vérification...</span><i class="fas fa-spinner fa-spin"></i>';
-    
+
     setTimeout(() => {
         if (inputPassword === MEMBER_PASSWORD) {
             // Mot de passe correct - stockage en session
             sessionStorage.setItem('amc_authenticated', 'true');
             sessionStorage.setItem('amc_login_time', new Date().toISOString());
-            
+
             // Redirection vers la page principale
             window.location.href = 'main.html';
         } else {
             // Mot de passe incorrect
             errorMsg.classList.add('show');
             loginBtn.innerHTML = '<span>ACCÉDER AU SITE</span><i class="fas fa-arrow-right"></i>';
-            
+
             // Animation d'erreur
             const container = document.querySelector('.login-container');
             container.style.animation = 'shake 0.5s ease';
             setTimeout(() => {
                 container.style.animation = '';
             }, 500);
-            
+
             // Effacer le champ et refocus
             document.getElementById('password').value = '';
             document.getElementById('password').focus();
@@ -52,15 +63,21 @@ function checkPassword() {
 function checkAuth() {
     // Vérifie si l'utilisateur est authentifié
     const isAuthenticated = sessionStorage.getItem('amc_authenticated') === 'true';
-    
+
     // Si non authentifié et ce n'est pas la page de login
     if (!isAuthenticated && !window.location.href.includes('index.html')) {
         window.location.href = 'index.html';
     }
-    
+
     // Si authentifié et sur la page de login
     if (isAuthenticated && window.location.href.includes('index.html')) {
         window.location.href = 'main.html';
+    }
+
+    // Protection des pages protégées
+    const currentPage = window.location.pathname.split('/').pop();
+    if (PROTECTED_PAGES.includes(currentPage) && !isAuthenticated) {
+        window.location.href = 'index.html';
     }
 }
 
@@ -78,7 +95,7 @@ function logout() {
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.getElementById('password');
-    
+
     if (passwordInput) {
         passwordInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -86,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Exécuter la vérification d'authentification
     checkAuth();
 });
@@ -110,7 +127,7 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-    
+
     if (navToggle && navLinks) {
         navToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
@@ -133,7 +150,7 @@ let inactivityTime = function() {
     window.onload = resetTimer;
     document.onmousemove = resetTimer;
     document.onkeypress = resetTimer;
-    
+
     function logout() {
         sessionStorage.removeItem('amc_authenticated');
         sessionStorage.removeItem('amc_login_time');
@@ -142,7 +159,7 @@ let inactivityTime = function() {
             window.location.href = 'index.html';
         }
     }
-    
+
     function resetTimer() {
         clearTimeout(time);
         time = setTimeout(logout, 30 * 60 * 1000); // 30 minutes

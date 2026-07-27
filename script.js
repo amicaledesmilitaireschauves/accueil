@@ -168,3 +168,65 @@ let inactivityTime = function() {
 
 // Lancer le timer d'inactivité
 inactivityTime();
+
+// Script du jeu : /////////////////////////////////////////////////////////////////////////////////////////
+
+ // Tableau des images dans l'ordre
+        const images = [
+            "images/img1.png",
+            "images/img2.png",
+            "images/img3.png",
+            "images/img4.png"
+        ];
+
+        let currentIndex = 0;
+        let clickCounter = 0;
+
+        // Fonction pour changer d'image
+        function changeImage() {
+            // Avance à l'image suivante (boucle)
+            currentIndex = (currentIndex + 1) % images.length;
+            
+            // Met à jour l'image
+            document.getElementById('clickImage').src = images[currentIndex];
+            
+            // Incrémente le compteur
+            clickCounter++;
+            
+            // Met à jour l'affichage
+            updateDisplay();
+        }
+
+        // Fonction pour réinitialiser le jeu
+        function resetGame() {
+            currentIndex = 0;
+            clickCounter = 0;
+            document.getElementById('clickImage').src = images[0];
+            updateDisplay();
+        }
+
+        // Fonction pour mettre à jour l'affichage
+        function updateDisplay() {
+            // Met à jour le compteur de clics
+            document.getElementById('clickCount').textContent = clickCounter;
+            
+            // Met à jour le numéro d'image (1 à 4)
+            document.getElementById('imageNumber').textContent = currentIndex + 1;
+            
+            // Met à jour la barre de progression
+            const progress = ((currentIndex + 1) / images.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Met à jour les indicateurs
+            for (let i = 0; i < images.length; i++) {
+                const indicator = document.getElementById('ind' + i);
+                if (i === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            }
+        }
+
+        // Initialisation
+        updateDisplay();

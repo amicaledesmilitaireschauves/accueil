@@ -657,6 +657,12 @@ ul {
     text-align: center;
 }
 
+.goodie-image img {
+    max-width: 90%; 
+    max-height: 90%; 
+    object-fit: contain; /* Garde les proportions */
+}
+
 .goodie-image i {
     font-size: 70px;
     color: var(--primary);

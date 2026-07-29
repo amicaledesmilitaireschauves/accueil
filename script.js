@@ -4,12 +4,12 @@
  */
 
 // ============================================
-// CONFIGURATION - Modifier ici le mot de passe
+// CONFIGURATION
 // ============================================
 const MEMBER_PASSWORD = "AMC2026";
 
 // ============================================
-// Liste des pages protégées (à modifier si besoin)
+// Liste des pages protégées 
 // ============================================
 const PROTECTED_PAGES = [
     'actualites.html',
@@ -176,7 +176,7 @@ inactivityTime();
             "img1.png",
             "img2.png",
             "img3.png",
-            "img4.png"
+            "img4.png",
         ];
 
         let currentIndex = 0;

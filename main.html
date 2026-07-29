@@ -30,6 +30,12 @@
         </div>
     </nav>
 
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            <span>Demandez votre carte de membre par mail à amicaledeschauves@proton.me</span>
+        </div>
+    </div>
+
     <header class="hero">
         <div class="hero-content">
             <h1>Bienvenue à l'Amicale<br>des Militaires Chauves</h1>
@@ -71,8 +77,10 @@
     </section>
 
     <section class="presentation">
-            <h3 class="presentationh3">Présentation du projet associatif</h3><br>
+            <div class="pdf-content-parent">
             <div class="pdf-content">
+                <br>
+                <h3 class="presentationh3">Présentation du projet associatif</h3><br>
                 <p>Messieurs,</p>
 
                 <p>Aujourd’hui, plus que jamais, il est essentiel de se rassembler autour de ce qui nous unit. C’est dans cet esprit que je propose de créer l’Amicale des Militaires Chauves, une communauté dédiée à tous ceux qui partagent cette particularité capillaire, qu’elle soit naturelle, choisie ou subie.</p><br>
@@ -92,7 +100,7 @@
                 <p>Donnons-nous une chance !</p>
 
                 <p>Vous êtes invités à parler de cette initiative autour de vous.</p>
-
+            </div>
             </div>
         </section>
 
@@ -120,7 +128,67 @@
         </div>
 
     </div>
+    <script>
+        // Script du jeu : /////////////////////////////////////////////////////////////////////////////////////////
 
+ // Tableau des images dans l'ordre
+         const images = [
+            "img1.png",
+            "img2.png",
+            "img3.png",
+            "img4.png"
+        ];
+
+        let currentIndex = 0;
+        let clickCounter = 0;
+
+        // Fonction pour changer d'image
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('clickImage').src = images[currentIndex];
+            clickCounter++;
+            updateDisplay();
+        }
+
+        // Fonction pour réinitialiser le jeu
+        function resetGame() {
+            currentIndex = 0;
+            clickCounter = 0;
+            document.getElementById('clickImage').src = images[0];
+            updateDisplay();
+        }
+
+        // Fonction pour aller à une image spécifique
+        function goToImage(index) {
+            currentIndex = index;
+            document.getElementById('clickImage').src = images[currentIndex];
+            updateDisplay();
+        }
+
+        // Fonction pour mettre à jour l'affichage
+        function updateDisplay() {
+            document.getElementById('clickCount').textContent = clickCounter;
+            document.getElementById('imageNumber').textContent = currentIndex + 1;
+            const progress = ((currentIndex + 1) / images.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            for (let i = 0; i < images.length; i++) {
+                const indicator = document.getElementById('ind' + i);
+                if (i === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            }
+        }
+
+        // Écouteurs d'événements
+        document.getElementById('clickImage').addEventListener('click', changeImage);
+        document.getElementById('resetBtn').addEventListener('click', resetGame);
+
+        // Initialisation
+        updateDisplay();
+    </script>
     <!--FIN JEU -->
 
     <footer class="footer">
